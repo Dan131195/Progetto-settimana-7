@@ -131,6 +131,22 @@ const addProduct = async () => {
   loadProduct();
 };
 
+const deleteProduct = async (id) => {
+  try {
+    await fetch(url + id, {
+      method: "DELETE",
+      headers: {
+        Authorization: key,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  loadProduct();
+  btnSendForm.setAttribute("disabled", "true");
+};
+
+
 const modifyProduct = async (id) => {
   editProduct(id);
 
