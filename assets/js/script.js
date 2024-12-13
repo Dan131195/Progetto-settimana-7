@@ -35,9 +35,6 @@ window.onload = () => {
   loadProduct();
 };
 
-document.onload(let id = URLSearchParams()) 
-
-
 const loadProduct = async () =>
   await fetch(url, {
     headers: {
@@ -48,8 +45,6 @@ const loadProduct = async () =>
     .then((data) => {
       product = data;
       console.log(data);
-      productList.push(product);
-      console.log(productList);
       if (product.length > 0) {
         printData();
       } else {
@@ -84,10 +79,7 @@ const printData = () => {
     let newCardButtonEdit = document.createElement("button");
     newCardButtonEdit.setAttribute("class", "btn btn-warning mb-3");
     newCardButtonEdit.setAttribute("type", "button");
-    newCardButtonEdit.setAttribute(
-      "onclick",
-      `modifyProduct("${element._id}")`
-    );
+    newCardButtonEdit.setAttribute("onclick", `editProduct("${element._id}")`);
     newCardButtonEdit.innerText = "MODIFICA";
     let newCardButtonDelete = document.createElement("button");
     newCardButtonDelete.setAttribute("class", "btn btn-danger");
@@ -150,10 +142,6 @@ const deleteProduct = async (id) => {
 };
 
 const modifyProduct = async (id) => {
-  editProduct(id);
-
-  edit.setAttribute("style", "display: block");
-
   //   product.name = productName.value;
   //   product.description = productName.description;
   //   product.brand = productName.brand;
@@ -185,13 +173,10 @@ const editProduct = async (id) => {
     .then((resp) => resp.json())
     .then((data) => {
       console.log(data);
-      document = "backoffice.html/?=" + id;
-      let edit = document.createElement('button');
-      edit.setAttribute('type', 'button');
-      edit.setAttribute('id', 'edit')
-      edit.setAttribute('class', 'btn btn-danger text-light py-2 w-100')
-      edit.innerText = 'Modifica';
-      myForm.appendChild(edit) ; 
+      window.location.href = "backoffice.html";
+      let btn = document.getElementById("edit");
+      btn.setAttribute("class", "btn btn-danger text-light py-1 float-start rounded-2");
+      btn.innerHTML = "Modifica";
       productName.value = data.name;
       description.value = data.description;
       brand.value = data.brand;
@@ -200,4 +185,3 @@ const editProduct = async (id) => {
     })
     .catch((err) => console.log(err));
 };
-

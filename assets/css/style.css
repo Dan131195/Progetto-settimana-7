@@ -9,7 +9,9 @@
     height: 30px;
 }
 
-
+#edit {
+    border: none;
+}
 
 #save {
     margin-left: 15px;
