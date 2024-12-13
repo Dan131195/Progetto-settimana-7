@@ -35,6 +35,9 @@ window.onload = () => {
   loadProduct();
 };
 
+document.onload(let id = URLSearchParams()) 
+
+
 const loadProduct = async () =>
   await fetch(url, {
     headers: {
@@ -146,7 +149,6 @@ const deleteProduct = async (id) => {
   btnSendForm.setAttribute("disabled", "true");
 };
 
-
 const modifyProduct = async (id) => {
   editProduct(id);
 
@@ -183,7 +185,7 @@ const editProduct = async (id) => {
     .then((resp) => resp.json())
     .then((data) => {
       console.log(data);
-      window.location.href = "backoffice.html/?=" + id;
+      document = "backoffice.html/?=" + id;
       let edit = document.createElement('button');
       edit.setAttribute('type', 'button');
       edit.setAttribute('id', 'edit')
